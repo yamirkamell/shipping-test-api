@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User API",
+      "description": "API for managing users",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/users/auth": {
+        "post": {
+          "summary": "Auth user and get JWT",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthUser"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthUserResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AuthUser": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "AuthUserResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
